@@ -15,29 +15,40 @@ pub fn execute() {
         println!("{}. {} [{}]", i + 1, prompt.title, prompt.tags.join(", "));
     }
 
-    print!("{}", "Enter the number of the prompt to delete: ".yellow());
+    print!("{}", "Enter the numbers of the prompts to delete (comma-separated, e.g., 1,3,5): ".yellow());
     io::stdout().flush().unwrap();
 
-    let mut choice = String::new();
-    io::stdin().read_line(&mut choice).unwrap();
+    let mut choices = String::new();
+    io::stdin().read_line(&mut choices).unwrap();
 
-    let index = match choice.trim().parse::<usize>() {
-        Ok(index) => index,
-        Err(_) => {
-            println!("{}", "❌ Invalid input. Please enter a number.".red());
-            return;
+    let indices_to_delete: Vec<usize> = choices
+        .trim()
+        .split(',')
+        .filter_map(|s| s.trim().parse::<usize>().ok())
+        .collect();
+
+    // 从大到小排序，防止删除时索引错位
+    let mut sorted_indices = indices_to_delete;
+    sorted_indices.sort_unstable_by(|a, b| b.cmp(a));
+
+    let mut deleted_count = 0;
+    for index in sorted_indices {
+        if index > 0 && index <= prompts.len() {
+            prompts.remove(index - 1);
+            deleted_count += 1;
+        } else {
+            println!("{}", format!("❌ Invalid prompt number: {}.", index).red());
         }
-    };
+    }
 
-    if index > 0 && index <= prompts.len() {
-        prompts.remove(index - 1);
+    if deleted_count > 0 {
         if let Ok(_) = save_prompts(&prompts) {
-            println!("{}", "✅ Prompt deleted successfully!".green());
+            println!("{}", format!("✅ Successfully deleted {} prompts!", deleted_count).green());
         } else {
             println!("{}", "❌ Failed to save prompts.".red());
         }
     } else {
-        println!("{}", "❌ Invalid prompt number.".red());
+        println!("{}", "❌ No prompts were deleted.".red());
     }
 }
 
