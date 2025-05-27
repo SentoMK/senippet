@@ -1,7 +1,12 @@
 [package]
 name = "senprompt"
 version = "0.1.0"
+authors = ["SentoMK <sentomk040924@gmail.com>"]
+description = "Localized knowledge asset management tools. Easy to use."
 edition = "2024"
+license = "MIT"
+repository = "https://github.com/SentoMK/senprompt"
+keywords = ["cli"]
 
 [dependencies]
 directories = "4.0.1"  # 跨平台目录处理
