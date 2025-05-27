@@ -24,7 +24,7 @@ fn main() {
         println!("{}", "4) Edit Prompts".italic());
         println!("{}", "5) Delete Prompts".italic());
         println!("{}", "6) Show Data Path".italic());
-        println!("{}", "6) Exit".italic());
+        println!("{}", "7) Exit".italic());
 
         // 处理命令并获取退出标志
         if commands::handle_command() {

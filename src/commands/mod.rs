@@ -45,7 +45,7 @@ pub fn handle_command() -> bool {
             info::show_data_path();
             wait_for_enter();
         }
-        "100" => {
+        "7" => {
             return true; // 触发退出
         }
         _ => {
