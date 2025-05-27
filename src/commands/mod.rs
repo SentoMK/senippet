@@ -1,12 +1,11 @@
 // src/commands/mod.rs
 use colored::*;
-
+use std::io::{ self, Write };
 pub mod add;
 pub mod list;
 pub mod search;
 pub mod info;
-
-use std::io::{self, Write};
+pub mod delete;
 
 // 修改函数返回类型
 pub fn handle_command() -> bool {
@@ -38,6 +37,10 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
         "5" => {
+            delete::execute();
+            wait_for_enter();
+        }
+        "6" => {
             return true; // 触发退出
         }
         _ => {
