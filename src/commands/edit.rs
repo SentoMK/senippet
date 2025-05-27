@@ -52,8 +52,9 @@ pub fn execute() {
 
 fn edit_prompt(prompt: &mut Prompt) {
     println!("{}", format!("Editing prompt: {}", prompt.title).bold());
-
-    // 编辑titles
+    
+    // 编辑 title
+    println!("{}", format!("Current title: {}", prompt.title).dimmed()); // Show current value
     print!("{}", "Enter new title (leave empty to keep current): ".bold());
     io::stdout().flush().unwrap();
     let mut new_title = String::new();
@@ -62,8 +63,9 @@ fn edit_prompt(prompt: &mut Prompt) {
     if !new_title.is_empty() {
         prompt.title = new_title.to_string();
     }
-
-    // 编辑tags
+    
+    // 编辑 tags
+    println!("{}", format!("Current tags: {}", prompt.tags.join(", ")).dimmed()); // Show current value
     print!("{}", "Enter new tags (comma-separated, leave empty to keep current): ".bold());
     io::stdout().flush().unwrap();
     let mut new_tags = String::new();
@@ -73,7 +75,8 @@ fn edit_prompt(prompt: &mut Prompt) {
         prompt.tags = new_tags.split(',').map(|s| s.trim().to_string()).collect();
     }
     
-    // 编辑contents
+    // 编辑 content
+    println!("{}", format!("Current content:\n{}", prompt.content).dimmed()); // Show current value
     print!("{}", "Enter new content (leave empty to keep current): ".bold());
     io::stdout().flush().unwrap();
     let mut new_content = String::new();
