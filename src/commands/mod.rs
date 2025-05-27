@@ -6,6 +6,7 @@ pub mod list;
 pub mod search;
 pub mod info;
 pub mod delete;
+pub mod edit;
 
 // 修改函数返回类型
 pub fn handle_command() -> bool {
@@ -33,7 +34,7 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
         "4" => {
-            info::show_data_path();
+            edit::execute();
             wait_for_enter();
         }
         "5" => {
@@ -41,6 +42,10 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
         "6" => {
+            info::show_data_path();
+            wait_for_enter();
+        }
+        "100" => {
             return true; // 触发退出
         }
         _ => {

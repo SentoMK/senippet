@@ -31,15 +31,11 @@ pub fn load_prompts() -> Vec<Prompt> {
     }
 }
 
-pub fn save_prompts(prompts: &[Prompt]) -> std::io::Result<()> {
+pub fn save_prompts(prompts: &[Prompt]) -> Result<(), Box<dyn std::error::Error>> { // Return Result
     let path = match get_data_path() {
         Some(p) => p,
-        None => return Err(std::io::Error::new(
-            std::io::ErrorKind::NotFound,
-            "Could not determine data directory"
-        )),
+        None => return Err(From::from("Could not determine data directory")), // Return Error
     };
-
     ensure_data_dir()?;
     let json = serde_json::to_string_pretty(prompts)?;
     fs::write(path, json)?;

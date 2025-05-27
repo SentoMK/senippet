@@ -21,8 +21,9 @@ fn main() {
         println!("{}", "1) Add Prompt".italic());
         println!("{}", "2) List Prompts".italic());
         println!("{}", "3) Search by Tag".italic());
-        println!("{}", "4) Show Data Path".italic());
+        println!("{}", "4) Edit Prompts".italic());
         println!("{}", "5) Delete Prompts".italic());
+        println!("{}", "6) Show Data Path".italic());
         println!("{}", "6) Exit".italic());
 
         // 处理命令并获取退出标志
