@@ -74,33 +74,33 @@ senprompt
 Choose option:
 ```
 
-- 1. **Add Snippet/Template：**
+- 1.**Add Snippet/Template：**
 
-     输入代码片段/模板的标题、内容和标签（以逗号分隔）。
+  输入代码片段/模板的标题、内容和标签（以逗号分隔）。
 
-- 2. **List Snippets/Templates：**
+- 2.**List Snippets/Templates：**
 
-     显示所有已保存的代码片段/模板，包括序号、标题和标签。
+  显示所有已保存的代码片段/模板，包括序号、标题和标签。
 
-- 3. **Search by Tag：**
+- 3.**Search by Tag：**
 
-     输入要搜索的标签，显示匹配的代码片段/模板。
+  输入要搜索的标签，显示匹配的代码片段/模板。
 
-- 4. **Edit Snippets/Templates：**
+- 4.**Edit Snippets/Templates：**
 
-     选择要编辑的代码片段/模板的序号，然后修改标题、内容或标签。
+  选择要编辑的代码片段/模板的序号，然后修改标题、内容或标签。
 
-- 5. **Delete Snippets/Templates：**
+- 5.**Delete Snippets/Templates：**
 
-     选择要删除的代码片段/模板的序号，可以一次删除多个。
+  选择要删除的代码片段/模板的序号，可以一次删除多个。
 
-- 6. **Show Data Path：**
+- 6.**Show Data Path：**
 
-     显示存储代码片段/模板数据的目录的路径。
+  显示存储代码片段/模板数据的目录的路径。
 
-- 7. **Exit：**
+- 7.**Exit：**
 
-     退出程序。
+  退出程序。
 
 ## 使用场景
 
