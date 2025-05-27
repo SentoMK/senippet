@@ -1,20 +1,21 @@
 use crate::{models::Prompt, storage::save_prompts};
 use std::io::{self, Write};
+use colored::*;
 
 pub fn execute() {
     let mut title = String::new();
     let mut content = String::new();
     let mut tags = String::new();
 
-    print!("📝 Title: ");
+    print!("{}", "📝 Title: ".bold());
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut title).unwrap();
 
-    print!("💬 Prompt content: ");
+    print!("{}", "💬 Prompt content: ".bold());
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut content).unwrap();
 
-    print!("🏷️ Tags (comma-separated): ");
+    print!("{}", "🏷️ Tags (comma-separated): ".bold());
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut tags).unwrap();
 
@@ -27,5 +28,5 @@ pub fn execute() {
     let mut prompts = crate::storage::load_prompts();
     prompts.push(prompt);
     let _ = save_prompts(&prompts);
-    println!("✅ Prompt added!");
+    println!("{}", "✅ Prompt added!".green());
 }

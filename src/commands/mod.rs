@@ -1,4 +1,6 @@
 // src/commands/mod.rs
+use colored::*;
+
 pub mod add;
 pub mod list;
 pub mod search;
@@ -8,7 +10,7 @@ use std::io::{self, Write};
 
 // 修改函数返回类型
 pub fn handle_command() -> bool {
-    print!("Choose option: ");
+    print!("{}", "Choose option: ".yellow());
     io::stdout().flush().unwrap();
     
     let mut choice = String::new();
@@ -24,7 +26,7 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
         "3" => {
-            print!("Enter tag: ");
+            print!("{}", "Enter tag: ".bold());
             io::stdout().flush().unwrap();
             let mut tag = String::new();
             io::stdin().read_line(&mut tag).unwrap();
@@ -39,7 +41,7 @@ pub fn handle_command() -> bool {
             return true; // 触发退出
         }
         _ => {
-            println!("❌ Invalid option, please try again.");
+            println!("{}", "❌ Invalid option, please try again.".red());
             wait_for_enter();
         }
     }
@@ -51,7 +53,7 @@ pub fn handle_command() -> bool {
 fn wait_for_enter() {
     let mut dummy = String::new();
     println!("\nPress Enter to continue...");
-    println!("Or press C-c to exit");
+    println!("{}", "Or press Ctrl-c to force exit...".bright_yellow());
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut dummy).unwrap();
 }

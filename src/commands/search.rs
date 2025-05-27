@@ -1,4 +1,5 @@
 use crate::storage::load_prompts;
+use colored::*;
 
 pub fn execute(tag: &str) {
     let prompts = load_prompts();
@@ -8,7 +9,8 @@ pub fn execute(tag: &str) {
         .collect();
 
     if results.is_empty() {
-        println!("❌ No prompts found with tag '{}'", tag);
+        print!("{}", "❌ No prompts found with tag: ".red()); 
+        println!("{}", tag.bright_green().to_string())
     } else {
         for prompt in results {
             println!("🔹 {}: {}\n{}\n", 
