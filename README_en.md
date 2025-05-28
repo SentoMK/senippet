@@ -30,8 +30,6 @@ A CLI snippet (template) / prompt management tool built with Rust, designed to h
 cargo install senippet
 ```
 
-````
-
 ### Install from Source Code
 
 1. Clone the repository
