@@ -1,157 +1,234 @@
-# SENPROMPT
+# SENIPPET
 
-[简体中文](README_zh-CN.md)
+[中文](README.md) | [English](README_en.md)
 
-`Current Version: 0.1.0`
+`current version: 0.1.1`
 
-Senprompt is a CLI code snippet/template management tool built with Rust, designed to help you organize, store, and utilize frequently used code snippets, configuration templates, or command-line scripts, thereby enhancing efficiency in software development.
+一个用 Rust 构建的 CLI 代码片段（模板）/ Prompts 管理工具，旨在帮助您组织、存储和使用各种常用的代码片段、配置模板、或命令行脚本，以便在软件开发中提高效率。
 
-## Features
+## 特性/功能
 
-- **Add Snippets/Templates:** Easily add code snippets or templates with a title, content, and tags.
+- 当前版本增加了强大的添加/编辑模板的功能，支持两种编辑模式：
 
-- **List Snippets/Templates:** View all saved code snippets or templates.
+  1.  **单行编辑：** 允许用户在单个文本行中进行快速、便捷的修改。 非常适合简单的变量替换、属性调整等操作。
 
-- **Search by Tag:** Quickly find code snippets or templates related to specific tags.
+  2.  **多行编辑：** 提供更灵活的编辑环境，支持处理包含多行文本的模板。 适用于复杂的代码片段、配置文件、或者需要进行大规模修改的文本内容。
 
-- **Edit Snippets/Templates:** Modify existing code snippets or templates, including the title, content, and tags.
+- 可通过命令行直接操作。用法详见[使用说明](#usage)
 
-- **Delete Snippets/Templates:** Remove code snippets or templates that are no longer needed.
+## 安装
 
-- **Show Data Path:** Locate the directory where code snippets or template data is stored.
+**对于非 Rust 用户，可直接在 [Release](https://github.com/SentoMK/senippet/releases)界面下载对应操作系统的可执行文件。**
 
-- **Version Information:** Display the tool's version.
+### 前提条件
 
-- **User-Friendly Interface:** Features colorful output and clear menu options.
+- 安装 [Rust](https://www.rust-lang.org/tools/install) 和 Cargo (Rust 包管理器)。
 
-## Installation
-
-### Prerequisites
-
-- Install [Rust](https://www.rust-lang.org/tools/install) and Cargo (the Rust package manager).
-
-### Install from Crates.io
+### 从 Crates.io 安装
 
 ```bash
-cargo install senprompt
+cargo install senippet
 ```
 
-### Install from Source Code
+### 从源代码安装
 
-1.  Clone the repository:
+1. 克隆仓库
 
-    ```bash
-    git clone https://github.com/SentoMK/senprompt
-    cd senprompt
-    ```
+```bash
+git clone <https://github.com/SentoMK/senippet>
+cd senippet
+```
 
-2.  Build and install:
+2. 构建并安装
 
-    ```bash
-    cargo install --path .
-    ```
+```bash
+cargo install --path .
+```
 
-## Usage
+### 将 senpt 添加到环境变量 (PATH)
 
-1.  Run the senprompt command in the terminal:
+为了能够在任何目录下直接运行 `senpt` 命令，你需要将其添加到系统的环境变量 `PATH` 中。
+以下以在 Linux/macOS 系统中的操作步骤为例。
 
-    ```bash
-    senprompt
-    ```
+1. **找到可执行文件:**
 
-2.  Follow the menu prompts:
+   确认 `senippet/target/release/senpt` 文件存在。 这是你的 `senpt` 可执行文件的位置。
 
-    ```
-    🛠️  SENPROMPT CLI v0.1.0
+2. **确定要修改的配置文件:**
 
+   你需要编辑 shell 配置文件，具体取决于你使用的 shell：
 
-    📂 SENPROMPT CLI
-    1) Add Snippet/Template
-    2) List Snippets/Templates
-    3) Search by Tag
-    4) Edit Snippets/Templates
-    5) Delete Snippets/Templates
-    6) Show Data Path
-    7) Exit
-    Choose option:
-    ```
+   - **Bash:** `~/.bashrc` 或 `~/.bash_profile` 或 `~/.profile` (通常 `.bashrc` 更常用)
 
-    - **1. Add Snippet/Template:**
+   - **Zsh:** `~/.zshrc`
 
-      Enter the title, content, and tags (comma-separated) for the code snippet/template.
+   - **Fish:** `~/.config/fish/config.fish`
 
-    - **2. List Snippets/Templates:**
+   如果你不确定，可以在终端中运行 `echo $SHELL` 来查看你正在使用的 shell。
 
-      Display all saved code snippets/templates, including the index, title, and tags.
+3. **编辑配置文件:**
 
-    - **3. Search by Tag:**
+   使用文本编辑器 (如 `nano`, `vim`, `emacs`) 打开相应的配置文件。 例如，使用 `nano` 编辑 `.bashrc`：
 
-      Enter the tag to search for, and display matching code snippets/templates.
+   ```bash
+   nano ~/.bashrc
+   ```
 
-    - **4. Edit Snippets/Templates:**
+4. 添加或修改 `PATH` 环境变量:
 
-      Select the index of the code snippet/template to edit, then modify the title, content, or tags.
+   在配置文件中，找到 `PATH` 环境变量的定义。 如果没有找到，请添加以下行。 将 `senippet/target/release/senpt` 目录添加到 `PATH` 变量中：
 
-    - **5. Delete Snippets/Templates:**
+   ```bash
+     # 添加到 .bashrc, .zshrc, 或其他 shell 配置文件
+     export PATH="$PATH:$HOME/senippet/target/release/senpt"
+   ```
 
-      Select the index of the code snippet/template to delete (multiple indices can be specified at once).
+   **解释：**
 
-    - **6. Show Data Path:**
+- `$PATH`: 表示当前 `PATH` 变量的值。
 
-      Display the path to the directory where code snippet/template data is stored.
+- `:`： 用于分隔 `PATH` 变量中的不同目录。
 
-    - **7. Exit:**
+- `$HOME`: 表示你的 `home` 目录（例如 `/home/yourusername`）。
 
-      Exit the program.
+- `senippet/target/release/senpt`: 你的 `senpt` 可执行文件所在的目录。请确保替换为你的实际项目路径。这里假设你的项目位于 `$HOME/senippet`。
 
-## Use Cases
+5. 保存并关闭文件:
 
-- **Store frequently used code snippets:** Such as common functions, classes, or loop structures.
+   保存你修改的配置文件并关闭文本编辑器。
 
-- **Manage configuration file templates:** Such as Dockerfile, Kubernetes YAML files, or Nginx configuration files.
+6. 激活配置:
 
-- **Store common command-line scripts:** Such as scripts for deployment, building, or testing.
+   你需要重新加载配置文件以使更改生效。 在终端中运行以下命令：
 
-- **Quickly find and reuse code:** Quickly find the required code snippets or templates using tags.
+   `Bash`
 
-- **Improve development efficiency:** Avoid repeatedly writing the same code and reduce the possibility of errors.
+   ```bash
+      source ~/.bashrc
+   ```
 
-## Detailed Instructions
+   `Zsh`
 
-### Adding a Code Snippet/Template
+   ```bash
+      source ~/.zshrc
+   ```
 
-After selecting `1. Add Snippet/Template`, you will be prompted to enter the title, content, and tags in sequence. Separate tags with commas.
+   `Fish`
 
-### Listing Code Snippets/Templates
+   ```bash
+      source ~/.config/fish/config.fish
+   ```
 
-After selecting `2. List Snippets/Templates`, all saved code snippets/templates will be listed, including the index, title, and tags.
+<font color = "red">**重要提示:**</font>
 
-### Searching by Tag
+- 确保将 `/senippet` 替换为你实际的项目路径，如果你的项目不在 `$HOME` 目录下。
+- 这些步骤适用于 Linux 和 macOS。 Windows 的环境变量设置方式不同，请搜索 "windows 设置环境变量"。
 
-After selecting `3. Search by Tag`, enter the tag you want to search for. The program will display all code snippets/templates containing that tag.
+## <a name="usage"></a> 使用方法
 
-### Editing a Code Snippet/Template
+### 基本使用方式
 
-After selecting `4. Edit Snippets/Templates`, all code snippets/templates will be listed. Enter the index of the code snippet/template to edit (multiple indices can be separated by commas). You can then modify the title, content, and tags of each code snippet/template. If you do not want to modify a field, simply press Enter to keep the original value.
+**使用交互式菜单**
 
-### Deleting Code Snippets/Templates
+1. 在终端中直接运行程序即可进入交互式菜单界面：
 
-After selecting `5. Delete Snippets/Templates`, all code snippets/templates will be listed. Enter the index of the code snippet/template to delete (multiple indices can be separated by commas). The program will delete the specified code snippets/templates.
+   ```bash
+   senippet
+   ```
 
-### Showing the Data Path
+2. 程序会显示如下菜单选项：
 
-After selecting `6. Show Data Path`, the path to the directory where code snippet/template data is stored will be displayed. You can find the JSON file storing the code snippets/templates in this directory.
+   ```bash
+   🛠️  senippet CLI v0.1.1
 
-## Configuration File
+   📂 senippet CLI
+   1) Add Snippet/Template
+   2) List Snippets/Templates
+   3) Search by Tag
+   4) Edit Snippets/Templates
+   5) Delete Snippets/Templates
+   6) Show Data Path
+   7) Exit
+   Choose option:
+   ```
 
-Code snippet/template data is stored in a JSON file. This file is located in the following directory:
+   使用数字键选择对应功能，按回车确认。
 
-- `Linux: $HOME/.local/share/senprompt/data`
+**使用命令行参数**
 
-- `macOS: $HOME/Library/Application Support/com.sentomk.senprompt/data`
+程序支持直接通过命令行参数快速执行操作：
 
-- `Windows: C:\Users\<Your User>\AppData\Roaming\sentomk\senprompt\data`
+**add 命令：**
 
-## Contributing
+`--name <NAME> (或 -n <NAME>)`: 必须，代码片段的名称。
 
-Contributions are welcome! Please submit an Issue or a Pull Request.
+`--content <CONTENT> (或 -c <CONTENT>)`: 必须，代码片段的内容。
+
+`--multiline <CONTENT>`: 可选，多行输入。
+
+`--tags <TAGS> (或 -t <TAGS>)`: 可选，以逗号分隔的标签列表。
+
+**list 命令：**
+
+现在，list 命令会以表格形式显示所有代码片段的简短信息，包括 Short ID、名称和标签。
+
+输出格式如下：
+
+```
+│    ID    │ Name               │ Tags           │
+├──────────┼────────────────────┼────────────────┤
+│   sp001  │ My Awesome Prompt  │ tag1, tag2     │
+│   sp002  │ Another Prompt     │ tag3, tag4, tag5 │
+│   sp003  │ My Important Prompt│                │
+│          │                    │                │
+```
+
+**search 命令：**
+
+`--tag <TAG> (或 -t <TAG>)`: 必须，搜索特定标签的片段。
+
+**edit 命令：**
+
+`--id <ID> (或 -i <ID>)`: 必须，要编辑的片段的 ID。
+
+`--name <NAME> (或 -n <NAME>)`: 可选，新的名称。
+
+`--content <CONTENT> (或 -c <CONTENT>)`: 可选，新的内容。
+
+`--multiline <CONTENT>`: 可选，多行编辑。
+
+`--tags <TAGS> (或 -t <TAGS>)`: 可选，新的标签。
+
+**delete 命令：**
+
+`--id <ID> (或 -i <ID>)`: 必须，要删除的片段的 ID。
+
+**path 命令：**
+
+无需额外参数，显示数据存储路径。
+
+## 使用场景
+
+- **存储常用的代码片段：** 例如，常用的函数、类、循环结构等。
+
+- **管理配置文件模板：** 例如，Dockerfile、Kubernetes YAML 文件、Nginx 配置文件等。
+
+- **存储常用命令行脚本：** 例如，用于部署、构建、测试的脚本。
+
+- **快速查找和复用代码：** 通过标签快速找到需要的代码片段或模板。
+
+- **提高开发效率：** 避免重复编写相同的代码，减少出错的可能性
+
+## 配置文件
+
+代码片段/模板数据存储在 JSON 文件中。该文件位于以下目录：
+
+- `Linux： $HOME/.local/share/senippet/data`
+
+- `macOS： $HOME/Library/Application Support/com.sentomk.senippet/data`
+
+- `Windows： C:\Users\<Your User>\AppData\Roaming\sentomk\senippet\data`
+
+## 贡献
+
+欢迎贡献！请提交 Issue 或 Pull Request。
