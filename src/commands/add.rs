@@ -4,13 +4,13 @@ use std::io::{self, Write};
 use colored::*;
 
 pub fn execute_with_params(
-    title: Option<String>,
+    name: Option<String>,
     content: Option<String>,
     tags: Option<String>,
     multiline: bool,
 ) {
-    let title = title.unwrap_or_else(|| {
-        print!("{}", "📝 Title: ".bold());
+    let name = name.unwrap_or_else(|| {
+        print!("{}", "📝 Name (Title): ".bold());
         io::stdout().flush().unwrap();
         let mut input = String::new();
         io::stdin().read_line(&mut input).unwrap();
@@ -34,7 +34,7 @@ pub fn execute_with_params(
     });
 
     let prompt = Prompt::new(
-        title,
+        name,
         content,
         tags.split(',').map(|s| s.to_string()).collect()
     );

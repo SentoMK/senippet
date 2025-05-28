@@ -1,18 +1,18 @@
 // src/commands/mod.rs
 use colored::*;
-use std::io::{ self, Write };
+use std::io::{self, Write};
 pub mod add;
-pub mod list;
-pub mod search;
-pub mod info;
 pub mod delete;
 pub mod edit;
+pub mod info;
+pub mod list;
+pub mod search;
 
 // 修改函数返回类型
 pub fn handle_command() -> bool {
     print!("{}", "Choose option: ".yellow());
     io::stdout().flush().unwrap();
-    
+
     let mut choice = String::new();
     io::stdin().read_line(&mut choice).unwrap();
 
@@ -34,7 +34,7 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
         "4" => {
-            edit::execute();
+            // edit::execute();
             wait_for_enter();
         }
         "5" => {
@@ -53,7 +53,7 @@ pub fn handle_command() -> bool {
             wait_for_enter();
         }
     }
-    
+
     false // 默认继续循环
 }
 

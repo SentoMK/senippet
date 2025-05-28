@@ -26,7 +26,7 @@
 
 ### 从 Crates.io 安装
 
-```
+```bash
 cargo install senprompt
 ```
 
@@ -34,14 +34,14 @@ cargo install senprompt
 
 1. 克隆仓库
 
-```
+```bash
 git clone <https://github.com/SentoMK/senprompt>
 cd senprompt
 ```
 
 2. 构建并安装
 
-```
+```bash
 cargo install --path .
 ```
 
@@ -52,7 +52,7 @@ cargo install --path .
 
 1. **找到可执行文件:**
 
-   确认 `senprompt/target/debug/senpt` 或 `senprompt/target/release/senpt` 文件存在。 这是你的 `senpt` 可执行文件的位置。
+   确认 `senprompt/target/release/senpt` 文件存在。 这是你的 `senpt` 可执行文件的位置。
 
 2. **确定要修改的配置文件:**
 
@@ -76,38 +76,125 @@ cargo install --path .
 
 4. 添加或修改 `PATH` 环境变量:
 
-   在配置文件中，找到 `PATH` 环境变量的定义。 如果没有找到，请添加以下行。 将 `senprompt/target/debug` 目录添加到 `PATH` 变量中：
+   在配置文件中，找到 `PATH` 环境变量的定义。 如果没有找到，请添加以下行。 将 `senprompt/target/release/senpt` 目录添加到 `PATH` 变量中：
 
    ```bash
      # 添加到 .bashrc, .zshrc, 或其他 shell 配置文件
-     export PATH="$PATH:$HOME/senprompt/target/debug"
+     export PATH="$PATH:$HOME/senprompt/target/release/senpt"
    ```
+
+   **解释：**
+
+- `$PATH`: 表示当前 `PATH` 变量的值。
+
+- `:`： 用于分隔 `PATH` 变量中的不同目录。
+
+- `$HOME`: 表示你的 `home` 目录（例如 `/home/yourusername`）。
+
+- `senprompt/target/release/senpt`: 你的 `senpt` 可执行文件所在的目录。请确保替换为你的实际项目路径。这里假设你的项目位于 `$HOME/senprompt`。
+
+5. 保存并关闭文件:
+
+   保存你修改的配置文件并关闭文本编辑器。
+
+6. 激活配置:
+
+   你需要重新加载配置文件以使更改生效。 在终端中运行以下命令：
+
+   `Bash`
+
+   ```bash
+      source ~/.bashrc
+   ```
+
+   `Zsh`
+
+   ```bash
+      source ~/.zshrc
+   ```
+
+   `Fish`
+
+   ```bash
+      source ~/.config/fish/config.fish
+   ```
+
+<font color = "red">**重要提示:**</font>
+
+- 确保将 `/senprompt` 替换为你实际的项目路径，如果你的项目不在 `$HOME` 目录下。
+- 这些步骤适用于 Linux 和 macOS。 Windows 的环境变量设置方式不同，请搜索 "windows 设置环境变量"。
 
 ## <a name="usage"></a> 使用方法
 
-###
+### 基本使用方式
 
-1. 在终端中运行 senprompt 命令。
+**使用交互式菜单**
 
-```
-senprompt
-```
+1. 在终端中直接运行程序即可进入交互式菜单界面：
 
-2. 按照菜单提示进行操作：
+   ```bash
+   senprompt
+   ```
 
-```
-🛠️  SENPROMPT CLI v0.1.1
+2. 程序会显示如下菜单选项：
 
-📂 SENPROMPT CLI
-1) Add Snippet/Template
-2) List Snippets/Templates
-3) Search by Tag
-4) Edit Snippets/Templates
-5) Delete Snippets/Templates
-6) Show Data Path
-7) Exit
-Choose option:
-```
+   ```bash
+   🛠️  SENPROMPT CLI v0.1.1
+
+   📂 SENPROMPT CLI
+   1) Add Snippet/Template
+   2) List Snippets/Templates
+   3) Search by Tag
+   4) Edit Snippets/Templates
+   5) Delete Snippets/Templates
+   6) Show Data Path
+   7) Exit
+   Choose option:
+   ```
+
+   使用数字键选择对应功能，按回车确认。
+
+**使用命令行参数**
+
+程序支持直接通过命令行参数快速执行操作：
+
+**add 命令：**
+
+`--name <NAME> (或 -n <NAME>)`: 必须，代码片段的名称。
+
+`--content <CONTENT> (或 -c <CONTENT>)`: 必须，代码片段的内容。
+
+`--multiline <CONTENT>`: 可选，多行输入。
+
+`--tags <TAGS> (或 -t <TAGS>)`: 可选，以逗号分隔的标签列表。
+
+**list 命令：**
+
+`无需额外参数，简单列出所有片段。`
+
+**search 命令：**
+
+`--tag <TAG> (或 -t <TAG>)`: 必须，搜索特定标签的片段。
+
+**edit 命令：**
+
+`--id <ID> (或 -i <ID>)`: 必须，要编辑的片段的 ID。
+
+`--name <NAME> (或 -n <NAME>)`: 可选，新的名称。
+
+`--content <CONTENT> (或 -c <CONTENT>)`: 可选，新的内容。
+
+`--multiline <CONTENT>`: 可选，多行编辑。
+
+`--tags <TAGS> (或 -t <TAGS>)`: 可选，新的标签。
+
+**delete 命令：**
+
+`--id <ID> (或 -i <ID>)`: 必须，要删除的片段的 ID。
+
+**path 命令：**
+
+`无需额外参数，显示数据存储路径。`
 
 ## 使用场景
 
