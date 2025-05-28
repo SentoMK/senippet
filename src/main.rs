@@ -123,15 +123,15 @@ fn main() {
         // 添加主循环（如果没有任何命令）
         loop {
             clear_screen();
-            let version_line = format!("🛠️  SENPROMPT CLI v{}", env!("CARGO_PKG_VERSION"));
+            let version_line = format!("🛠️  SENIPPET CLI v{}", env!("CARGO_PKG_VERSION"));
             println!("{}", version_line.cyan());
             print!("\n");
-            println!("{}", "📂 SENPROMPT CLI".bold());
-            println!("{}", "1) Add Prompt".italic());
-            println!("{}", "2) List Prompts".italic());
+            println!("{}", "📂 SENIPPET CLI".bold());
+            println!("{}", "1) Add Snippet".italic());
+            println!("{}", "2) List Snippets".italic());
             println!("{}", "3) Search by Tag".italic());
-            println!("{}", "4) Edit Prompts".italic());
-            println!("{}", "5) Delete Prompts".italic());
+            println!("{}", "4) Edit Snippets".italic());
+            println!("{}", "5) Delete Snippets".italic());
             println!("{}", "6) Show Data Path".italic());
             println!("{}", "7) Exit".italic());
             // 处理命令并获取退出标志

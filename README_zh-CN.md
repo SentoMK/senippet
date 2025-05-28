@@ -1,4 +1,4 @@
-# SENPROMPT
+# SENIPPET
 
 [English](README.md)
 
@@ -14,11 +14,11 @@
 
   2.  **多行编辑：** 提供更灵活的编辑环境，支持处理包含多行文本的模板。 适用于复杂的代码片段、配置文件、或者需要进行大规模修改的文本内容。
 
-- 可通过命令行直接操作。用法详见[详细操作说明](#usage)
+- 可通过命令行直接操作。用法详见[使用说明](#usage)
 
 ## 安装
 
-**对于非 Rust 用户，可直接在 [Release](https://github.com/SentoMK/senprompt/releases)界面下载对应操作系统的可执行文件。**
+**对于非 Rust 用户，可直接在 [Release](https://github.com/SentoMK/senippet/releases)界面下载对应操作系统的可执行文件。**
 
 ### 前提条件
 
@@ -27,7 +27,7 @@
 ### 从 Crates.io 安装
 
 ```bash
-cargo install senprompt
+cargo install senippet
 ```
 
 ### 从源代码安装
@@ -35,8 +35,8 @@ cargo install senprompt
 1. 克隆仓库
 
 ```bash
-git clone <https://github.com/SentoMK/senprompt>
-cd senprompt
+git clone <https://github.com/SentoMK/senippet>
+cd senippet
 ```
 
 2. 构建并安装
@@ -52,7 +52,7 @@ cargo install --path .
 
 1. **找到可执行文件:**
 
-   确认 `senprompt/target/release/senpt` 文件存在。 这是你的 `senpt` 可执行文件的位置。
+   确认 `senippet/target/release/senpt` 文件存在。 这是你的 `senpt` 可执行文件的位置。
 
 2. **确定要修改的配置文件:**
 
@@ -76,11 +76,11 @@ cargo install --path .
 
 4. 添加或修改 `PATH` 环境变量:
 
-   在配置文件中，找到 `PATH` 环境变量的定义。 如果没有找到，请添加以下行。 将 `senprompt/target/release/senpt` 目录添加到 `PATH` 变量中：
+   在配置文件中，找到 `PATH` 环境变量的定义。 如果没有找到，请添加以下行。 将 `senippet/target/release/senpt` 目录添加到 `PATH` 变量中：
 
    ```bash
      # 添加到 .bashrc, .zshrc, 或其他 shell 配置文件
-     export PATH="$PATH:$HOME/senprompt/target/release/senpt"
+     export PATH="$PATH:$HOME/senippet/target/release/senpt"
    ```
 
    **解释：**
@@ -91,7 +91,7 @@ cargo install --path .
 
 - `$HOME`: 表示你的 `home` 目录（例如 `/home/yourusername`）。
 
-- `senprompt/target/release/senpt`: 你的 `senpt` 可执行文件所在的目录。请确保替换为你的实际项目路径。这里假设你的项目位于 `$HOME/senprompt`。
+- `senippet/target/release/senpt`: 你的 `senpt` 可执行文件所在的目录。请确保替换为你的实际项目路径。这里假设你的项目位于 `$HOME/senippet`。
 
 5. 保存并关闭文件:
 
@@ -121,7 +121,7 @@ cargo install --path .
 
 <font color = "red">**重要提示:**</font>
 
-- 确保将 `/senprompt` 替换为你实际的项目路径，如果你的项目不在 `$HOME` 目录下。
+- 确保将 `/senippet` 替换为你实际的项目路径，如果你的项目不在 `$HOME` 目录下。
 - 这些步骤适用于 Linux 和 macOS。 Windows 的环境变量设置方式不同，请搜索 "windows 设置环境变量"。
 
 ## <a name="usage"></a> 使用方法
@@ -133,15 +133,15 @@ cargo install --path .
 1. 在终端中直接运行程序即可进入交互式菜单界面：
 
    ```bash
-   senprompt
+   senippet
    ```
 
 2. 程序会显示如下菜单选项：
 
    ```bash
-   🛠️  SENPROMPT CLI v0.1.1
+   🛠️  senippet CLI v0.1.1
 
-   📂 SENPROMPT CLI
+   📂 senippet CLI
    1) Add Snippet/Template
    2) List Snippets/Templates
    3) Search by Tag
@@ -212,11 +212,11 @@ cargo install --path .
 
 代码片段/模板数据存储在 JSON 文件中。该文件位于以下目录：
 
-- `Linux： $HOME/.local/share/senprompt/data`
+- `Linux： $HOME/.local/share/senippet/data`
 
-- `macOS： $HOME/Library/Application Support/com.sentomk.senprompt/data`
+- `macOS： $HOME/Library/Application Support/com.sentomk.senippet/data`
 
-- `Windows： C:\Users\<Your User>\AppData\Roaming\sentomk\senprompt\data`
+- `Windows： C:\Users\<Your User>\AppData\Roaming\sentomk\senippet\data`
 
 ## 贡献
 
