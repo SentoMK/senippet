@@ -77,12 +77,52 @@ fn edit_prompt(prompt: &mut Prompt) {
     
     // 编辑 content
     println!("{}", format!("Current content:\n{}", prompt.content).dimmed()); // Show current value
-    print!("{}", "Enter new content (leave empty to keep current): ".bold());
+    
+    // 选择单行/多行编辑方式
+    println!("{}", "Choose content edit method:".bold());
+    println!("{}", "1) Single-line".italic());
+    println!("{}", "2) Multi-line".italic());
+
+    let mut input_method = String::new();
+    print!("{}", "Enter your choice (1 or 2): ".yellow());
     io::stdout().flush().unwrap();
-    let mut new_content = String::new();
-    io::stdin().read_line(&mut new_content).unwrap();
-    let new_content = new_content.trim();
-    if !new_content.is_empty() {
-        prompt.content = new_content.to_string();
+    io::stdin().read_line(&mut input_method).unwrap();
+
+    match input_method.trim() {
+        "1" => {
+            print!("{}", "Enter new content (single-line, leave empty to keep current): ".bold());
+            io::stdout().flush().unwrap();
+            let mut new_content = String::new();
+            io::stdin().read_line(&mut new_content).unwrap();
+            let new_content = new_content.trim();
+            if !new_content.is_empty() {
+                prompt.content = new_content.to_string();
+            }
+        }
+        "2" => {
+            println!("{}", "Enter new content (multi-line, enter '.' on a new line to finish, leave empty to keep current):".bold());
+            let mut new_content = String::new();
+            loop {
+                let mut line = String::new();
+                io::stdin().read_line(&mut line).unwrap();
+                let line = line.trim();
+                if line == "." {
+                    break;
+                }
+                if line.is_empty() && new_content.is_empty() {
+                    // 如果用户直接输入 ".", 并且当前内容为空，则保留原来的内容
+                    return;
+                }
+                new_content.push_str(&line);
+                new_content.push_str("\n");
+            }
+            if !new_content.is_empty() {
+                prompt.content = new_content.to_string();
+            }
+        }
+        _ => {
+            println!("{}", "❌ Invalid choice, keeping current content.".red());
+        }
     }
 }
+
