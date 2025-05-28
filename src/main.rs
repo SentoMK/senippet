@@ -92,10 +92,10 @@ fn main() {
                 tags,
                 multiline,
             } => {
-                commands::add::execute_with_params(name, content, tags, multiline);
+                let _ = commands::add::execute_with_params(name, content, tags, multiline);
             }
             Commands::List => {
-                commands::list::execute();
+                let _ = commands::list::execute();
             }
             Commands::Search { tag } => {
                 commands::search::execute(&tag);

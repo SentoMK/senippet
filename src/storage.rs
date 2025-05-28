@@ -5,7 +5,7 @@ use std::path::PathBuf;
 
 // 获取配置文件路径
 pub fn get_data_path() -> Option<PathBuf> {
-    ProjectDirs::from("com", "sentomk", "senprompt")
+    ProjectDirs::from("com", "sentomk", "senippet")
         .map(|proj_dirs| proj_dirs.data_dir().to_path_buf())
 }
 
@@ -31,7 +31,8 @@ pub fn load_prompts() -> Vec<Prompt> {
     }
 }
 
-pub fn save_prompts(prompts: &[Prompt]) -> Result<(), Box<dyn std::error::Error>> { // Return Result
+pub fn save_prompts(prompts: &[Prompt]) -> Result<(), Box<dyn std::error::Error>> {
+    // Return Result
     let path = match get_data_path() {
         Some(p) => p,
         None => return Err(From::from("Could not determine data directory")), // Return Error

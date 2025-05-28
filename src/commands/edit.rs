@@ -1,10 +1,13 @@
 // commands/edit.rs
-use crate::{models::Prompt, storage::{load_prompts, save_prompts}};
-use std::io;
+use crate::{
+    models::Prompt,
+    storage::{load_prompts, save_prompts},
+};
 use colored::*;
+use std::io;
 
 pub fn execute(
-    id: &String,
+    uuid: &str,
     name: Option<String>,
     content: Option<String>,
     multiline: bool,
@@ -15,7 +18,7 @@ pub fn execute(
     // 根据 ID 查找要编辑的 Prompt
     let mut found = false;
     for prompt in &mut prompts {
-        if &prompt.id == id {
+        if &prompt.uuid == uuid {
             found = true;
             edit_prompt(prompt, name, content, multiline, tags);
             break;
@@ -23,7 +26,7 @@ pub fn execute(
     }
 
     if !found {
-        println!("{}", format!("❌ No prompt found with ID: {}", id).red());
+        println!("{}", format!("❌ No prompt found with ID: {}", uuid).red());
         return;
     }
 
@@ -52,16 +55,25 @@ fn edit_prompt(
 
     // 编辑 tags
     if let Some(tags) = new_tags {
-        println!("{}", format!("Current tags: {}", prompt.tags.join(", ")).dimmed());
+        println!(
+            "{}",
+            format!("Current tags: {}", prompt.tags.join(", ")).dimmed()
+        );
         prompt.tags = tags.split(',').map(|s| s.trim().to_string()).collect();
     }
 
     // 编辑 content
     if let Some(content) = new_content {
-        println!("{}", format!("Current content:\n{}", prompt.content).dimmed());
+        println!(
+            "{}",
+            format!("Current content:\n{}", prompt.content).dimmed()
+        );
         prompt.content = content;
     } else if multiline {
-        println!("{}", format!("Current content:\n{}", prompt.content).dimmed());
+        println!(
+            "{}",
+            format!("Current content:\n{}", prompt.content).dimmed()
+        );
         println!("{}", "Enter new content (multi-line, enter '.' on a new line to finish, leave empty to keep current):".bold());
         let mut new_content = String::new();
         loop {

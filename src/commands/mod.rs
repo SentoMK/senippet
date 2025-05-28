@@ -18,11 +18,11 @@ pub fn handle_command() -> bool {
 
     match choice.trim() {
         "1" => {
-            add::execute();
+            let _ = add::execute();
             wait_for_enter();
         }
         "2" => {
-            list::execute();
+            let _ = list::execute();
             wait_for_enter();
         }
         "3" => {
